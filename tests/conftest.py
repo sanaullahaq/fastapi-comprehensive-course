@@ -6,7 +6,7 @@ pytest will automatically look for those fixture into the `conftest.py` file.
 All the subpackage(if we define) can also access this `conftest.py`
 
 however if we want we can define a separate `conftest.py` inside the subpackage of package `tests`.
-Then subpackage will use that `conftest.py`. and the upper level test modules/files will not have accesss to the `conftest.py` file
+Then subpackage will use that `conftest.py`. and the upper level test modules/files will not have access to the `conftest.py` file
 inside the subpackage
 """
 
@@ -60,14 +60,14 @@ def client(session):
             session.close()
 
     """
-    We have created a Test DB for testing purpose and we are overriding the actual `get_db` depency of our `app` with `override_get_db`
+    We have created a Test DB for testing purpose and we are overriding the actual `get_db` dependency of our `app` with `override_get_db`
     So that all our testing purpose related queries runs into the test DB
     """
     app.dependency_overrides[get_db] = override_get_db
 
     # `yield` operator will return the value it generates, it can generate multiple values and send them as list
     # most important `yield` will let execute the function till the end where it will also send the generated value(s) as well
-    # unlike `return`, `return` statement stops the execution of the function after retuern statement
+    # unlike `return`, `return` statement stops the execution of the function after return statement
     yield TestClient(app)
     # Base.metadata.drop_all(bind=engine)       # this will clean the DB, and we will not able to analyse DB state if any test fails
 
